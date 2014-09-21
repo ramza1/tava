@@ -5,7 +5,7 @@ require "bundler/capistrano"
 
 server "208.68.37.172", :web, :app, :db, primary: true
 
-set :application, "tave"
+set :application, "tava"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
@@ -40,6 +40,7 @@ namespace :deploy do
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
+
   after "deploy:finalize_update", "deploy:symlink_config"
 
 
